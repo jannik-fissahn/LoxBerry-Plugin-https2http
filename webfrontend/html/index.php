@@ -89,7 +89,6 @@ if (isset($_REQUEST['url']))
         curl_setopt($curl, CURLOPT_FOLLOWLOCATION, true);
         curl_setopt($curl, CURLOPT_USERAGENT,'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36');
 
-        // --- Changed lines (regex approach) ---
         $pattern = '/^https:\/\/(?:([^:]+):([^@]+)@)?(.*)$/';
         if (preg_match($pattern, $_REQUEST['url'], $matches)) {
             $user = $matches[1] ?? '';
@@ -110,7 +109,6 @@ if (isset($_REQUEST['url']))
             debug("URL pattern does not match: '".$_REQUEST['url']."'",3);
             die("Invalid URL");
         }
-        // --- End changed lines ---
 
         curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
         curl_setopt($curl, CURLOPT_SSL_VERIFYSTATUS, false);
